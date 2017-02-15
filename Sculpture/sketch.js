@@ -7,19 +7,17 @@ function setup() {
   mic.start();//this pulls the microphone on the device, and uses it to react to the user
 }
 
-
-
 function draw() {
   background(0);
   level = mic.getLevel(); //this gives a value to the sound coming from the mic, which it then assigns to the camera and blue color value
   camera(0, 0, 100 + level * 1000);
   translate(width / width + radians(rotationX), height / height + radians(rotationZ));
-  //the radians and rotationX/Z apply to mobile devices. on the computer, they're just 0, and don't add anything to the translate. on the phone, it'll move the structure according to the device rotation.
+  //the radians and rotationX/Z apply to mobile devices. on the computer, they're just 0, and don't add anything to the translate.
+  //on the phone, it'll move the structure according to the device rotation.
   for (var i = 0; i < 4; i++) { //a for loop constructs four rings in the same place, but they rotate differently
     drawRing();
   }
 }
-
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
