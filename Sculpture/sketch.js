@@ -12,7 +12,7 @@ function setup() {
 function draw() {
   background(0);
   level = mic.getLevel();
-  camera(0, 0, level * 1000);
+  camera(0, 0, 100 + level * 1000);
   translate(width / width + radians(rotationX), height / height + radians(rotationZ));
   for (var i = 0; i < 4; i++) { //a for loop constructs three rings in the same place, but they rotate differently
     drawRing();
