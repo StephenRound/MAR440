@@ -27,9 +27,11 @@ function windowResized() {
 //this function creates a single ring object
 function drawRing() {
   translate(width / width, height / height);
-  rotateZ(frameCount * 0.01);
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
+  //rotateZ(frameCount * 0.01);
+  //rotateX(frameCount * 0.01);
+  //rotateY(frameCount * 0.01);
+  rotateZ(radians(rotationZ));
+  rotateX(radians(rotationX));
   fill(mouseX, mouseY, level*1000); //easy color changing placeholder "interactive" element. working on p5.dom
   sphere(100, 100);
   torus(300, 10);
