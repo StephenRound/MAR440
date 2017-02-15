@@ -13,8 +13,8 @@ function draw() {
   background(0);
   level = mic.getLevel();
   camera(0, 0, level * 1000);
+  translate(width / width + radians(rotationX), height / height + radians(rotationZ));
   for (var i = 0; i < 4; i++) { //a for loop constructs three rings in the same place, but they rotate differently
-    translate(width / width + radians(rotationX), height / height + radians(rotationZ));
     drawRing();
   }
 }
@@ -29,7 +29,7 @@ function drawRing() {
   translate(width / width, height / height);
   //rotateZ(frameCount * 0.01);
   //rotateX(frameCount * 0.01);
-  //rotateY(frameCount * 0.01);
+  rotateY(frameCount * 0.01);
   rotateZ(radians(rotationZ));
   rotateX(radians(rotationX));
   fill(mouseX, mouseY, level*1000); //easy color changing placeholder "interactive" element. working on p5.dom
