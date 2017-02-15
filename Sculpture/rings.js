@@ -1,5 +1,8 @@
 function Ring(number) {
-  this.num = number
+  this.num = number;
+  this.audio;
+  this.video;
+  this.accel;
 }
 
 Ring.prototype.draw = function() {
