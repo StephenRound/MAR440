@@ -16,9 +16,9 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255);
   //for (var i; i < 3; i++) {
-  rocks.push(new Contender(random(width) - 30, random(height) - 30, 1, rockImg));
-  scissors.push(new Contender(random(width) - 30, random(height) - 30, 1, scisImg));
-  paper.push(new Contender(random(width) - 30, random(height) - 30, 1, papImg));
+  rocks.push(new Rock(random(width), random(height), 1, rockImg));
+  scissors.push(new Scissors(random(width), random(height), 1, scisImg));
+  paper.push(new Paper(random(width), random(height), 1, papImg));
   //}
 }
 

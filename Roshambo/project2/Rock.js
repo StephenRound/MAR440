@@ -5,29 +5,38 @@ function Rock(rockX, rockY, rockNum, rockImg) {
   this.accel = createVector(0, 0);
   this.velocity = createVector(0, 0);
   this.maxSpeed = 5;
-  this.size = 2;
+  this.maxPreyDist = 100;
+  this.caughtPrey = false;
+  this.killing = false;
+  this.size = 30;
+  this.killTime = 0;
 }
 
-Rock.prototype.frame = function() {
+Rock.prototype.frame = function(prey) {
   this.draw();
-  //this.move();
+  this.move();
+  this.hunt(prey);
 }
 
-Rock.prototype.draw = function() {
-  push();
-  translate(this.pos.x, this.pos.y);
-  var heading = this.velocity.heading();
-  rotate(heading+PI);
-  image(this.sprite, 0, 0, 30, 30);
-  pop();
-}
+
 
 Rock.prototype.move = function() {
-  var move = p5.Vector.random2D();
-  move.mult(0.5);
+  var moveAmount;
+  var mul = 1;
+
+  if (this.caughtPrey) {
+    moveAmount = p5.Vector.sub(this.caughtPrey.pos, this.pos);
+    var distance = moveAmount.mag();
+    moveAmount.normalize();
+    mul = constrain(map(distance, 0, 30, 0, 1), 0, 1);
+  } else {
+    var move = p5.Vector.random2D();
+    move.mult(0.5)
+  }
 
   this.accel = move;
   this.velocity.add(this.accel);
+  this.velocity.mult(mul);
   this.velocity.limit(this.maxSpeed);
 
   move.normalize();
@@ -58,3 +67,46 @@ Rock.prototype.checkBounds = function() {
     this.pos.y = 2;
   }
 };
+
+Rock.prototype.hunt = function(prey) {
+  var preyDist = p5.Vector.dist(prey.pos, this.pos);
+
+  textSize(50);
+  text(floor(preyDist), 50, 50);
+
+
+  if (preyDist <= this.maxPreyDist && prey.size >= 2) {
+    this.caughtPrey = prey;
+  }
+  this.kill(prey);
+};
+
+
+Rock.prototype.kill = function(prey) {
+  if (this.caughtPrey) {
+    if (p5.Vector.dist(this.pos, this.caughtPrey.pos) <= 1) {
+      this.killing = true;
+    }
+  }
+
+  if (this.killing) {
+    this.killTime++;
+    if (this.killTime % 5 === 0) {
+      this.caughtPrey.size--;
+    }
+    if (this.caughtPrey.size <= 0) {
+      this.killing = false;
+      this.killTime = 0;
+      this.caughtPrey = false;
+    }
+  }
+};
+
+Rock.prototype.draw = function() {
+  push();
+  translate(this.pos.x, this.pos.y);
+  var heading = this.velocity.heading();
+  rotate(heading + HALF_PI);
+  image(this.sprite, 0, 0, this.size, this.size);
+  pop();
+}

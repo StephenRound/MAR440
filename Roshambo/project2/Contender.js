@@ -76,17 +76,19 @@ Contender.prototype.checkBounds = function() {
 };
 
 Contender.prototype.hunt = function(prey) {
-    var preyDist = p5.Vector.dist(prey.pos, this.pos);
+  var preyDist = p5.Vector.dist(prey.pos, this.pos);
 
-    textSize(50);
-    text(preyDist, 50, 50);
+  textSize(50);
+  text(floor(preyDist), 50, 50);
 
 
-    if (preyDist <= this.maxPreyDist && prey.size >= 2) {
-      this.caughtPrey = prey;
-    }
-    this.kill(prey);
+  if (preyDist <= this.maxPreyDist && prey.size >= 2) {
+    this.caughtPrey = prey;
+  } else {
+    this.caughtPrey = false;
   }
+  this.kill(prey);
+};
 
 
 Contender.prototype.kill = function(prey) {

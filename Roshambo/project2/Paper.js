@@ -8,7 +8,8 @@ function Paper(papX, papY, papNum, papImg) {
   this.maxPreyDist = 100;
   this.caughtPrey = false;
   this.killing = false;
-  this.size = 2;
+  this.size = 30;
+  this.killTime = 0;
 }
 
 Paper.prototype.frame = function(prey) {
@@ -17,15 +18,7 @@ Paper.prototype.frame = function(prey) {
   this.hunt(prey);
 }
 
-Paper.prototype.draw = function() {
 
-  push();
-  translate(this.pos.x, this.pos.y);
-  var heading = this.velocity.heading();
-  rotate(heading + HALF_PI);
-  image(this.sprite, 0, 0, 30, 30);
-  pop();
-}
 
 Paper.prototype.move = function() {
   var moveAmount;
@@ -76,23 +69,18 @@ Paper.prototype.checkBounds = function() {
 };
 
 Paper.prototype.hunt = function(prey) {
+  var preyDist = p5.Vector.dist(prey.pos, this.pos);
 
-  for (var i = 0; i < prey.length; i++) {
-    var beat = prey[i];
-
-
-    var preyDist = p5.Vector.dist(beat.pos, this.pos);
-
-    textSize(50);
-    text(preyDist, 50, 50);
+  textSize(50);
+  text(floor(preyDist), 50, 50);
 
 
-    if (preyDist <= this.maxPreyDist && prey.size >= 2) {
-      this.caughtPrey = prey;
-      this.kill(prey);
-    }
+  if (preyDist <= this.maxPreyDist && prey.size >= 2) {
+    this.caughtPrey = prey;
   }
-}
+  this.kill(prey);
+};
+
 
 Paper.prototype.kill = function(prey) {
   if (this.caughtPrey) {
@@ -102,9 +90,23 @@ Paper.prototype.kill = function(prey) {
   }
 
   if (this.killing) {
-    this.prey = null;
-    this.killing = false;
-    this.caughtPrey = false;
-
+    this.killTime++;
+    if (this.killTime % 5 === 0) {
+      this.caughtPrey.size--;
+    }
+    if (this.caughtPrey.size <= 0) {
+      this.killing = false;
+      this.killTime = 0;
+      this.caughtPrey = false;
+    }
   }
+};
+
+Paper.prototype.draw = function() {
+  push();
+  translate(this.pos.x, this.pos.y);
+  var heading = this.velocity.heading();
+  rotate(heading + HALF_PI);
+  image(this.sprite, 0, 0, this.size, this.size);
+  pop();
 }
