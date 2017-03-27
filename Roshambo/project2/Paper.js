@@ -1,6 +1,5 @@
-function Paper(papX, papY, papNum, papImg) {
+function Paper(papX, papY, papImg) {
   this.pos = createVector(papX, papY);
-  this.number = papNum;
   this.sprite = papImg;
   this.accel = createVector(0, 0);
   this.velocity = createVector(0, 0);

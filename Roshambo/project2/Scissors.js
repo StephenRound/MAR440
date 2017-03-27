@@ -1,6 +1,5 @@
-function Scissors(scisX, scisY, scisNum, scisImg) {
+function Scissors(scisX, scisY, scisImg) {
   this.pos = createVector(scisX, scisY);
-  this.number = scisNum;
   this.sprite = scisImg;
   this.accel = createVector(0, 0);
   this.velocity = createVector(0, 0);

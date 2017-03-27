@@ -16,9 +16,9 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255);
   //for (var i; i < 3; i++) {
-  rocks.push(new Rock(random(width), random(height), 1, rockImg));
-  scissors.push(new Scissors(random(width), random(height), 1, scisImg));
-  paper.push(new Paper(random(width), random(height), 1, papImg));
+  rocks.push(new Rock(random(width), random(height), rockImg));
+  scissors.push(new Scissors(random(width), random(height), scisImg));
+  paper.push(new Paper(width/2, height/2, papImg));
   //}
 }
 
@@ -27,12 +27,12 @@ function draw() {
   rocks.forEach(function(rock, idx) {
     rock.frame(scissors);
   });
-  scissors.forEach(function(scissors, idx) {
-    scissors.frame(paper);
-  });
-  paper.forEach(function(paper, idx) {
-    paper.frame(rocks);
-  });
+  // scissors.forEach(function(scissors, idx) {
+  //   scissors.frame(paper);
+  // });
+  // paper.forEach(function(paper, idx) {
+  //   paper.frame(rocks);
+  // });
 }
 
 function windowResized() {

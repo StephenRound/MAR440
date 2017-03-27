@@ -1,6 +1,5 @@
-function Contender(conX, conY, conNum, conImg) {
+function Contender(conX, conY, conImg) {
   this.pos = createVector(conX, conY);
-  this.number = conNum;
   this.sprite = conImg;
   this.accel = createVector(0, 0);
   this.velocity = createVector(0, 0);
@@ -9,22 +8,13 @@ function Contender(conX, conY, conNum, conImg) {
   this.caughtPrey = false;
   this.killing = false;
   this.size = 2;
+  this.killTime = 0;
 }
 
-Contender.prototype.frame = function(prey) {
+Contender.prototype.frame = function() {
   this.draw();
   this.move();
-  this.hunt(prey);
-}
-
-Contender.prototype.draw = function() {
-
-  push();
-  translate(this.pos.x, this.pos.y);
-  var heading = this.velocity.heading();
-  rotate(heading + HALF_PI);
-  image(this.sprite, 0, 0, 30, 30);
-  pop();
+  //this.hunt(prey);
 }
 
 Contender.prototype.move = function() {
@@ -75,7 +65,7 @@ Contender.prototype.checkBounds = function() {
   }
 };
 
-Contender.prototype.hunt = function(prey) {
+/*Contender.prototype.hunt = function(prey) {
   var preyDist = p5.Vector.dist(prey.pos, this.pos);
 
   textSize(50);
@@ -84,24 +74,36 @@ Contender.prototype.hunt = function(prey) {
 
   if (preyDist <= this.maxPreyDist && prey.size >= 2) {
     this.caughtPrey = prey;
-  } else {
-    this.caughtPrey = false;
+    this.kill(prey);
   }
-  this.kill(prey);
+  
 };
 
-
 Contender.prototype.kill = function(prey) {
-  if (this.caughtPrey) {
-    if (p5.Vector.dist(this.pos, this.caughtPrey.pos) <= 1) {
+ if (this.caughtPrey) {
+    if (p5.Vector.dist(this.pos, prey.pos) <= 1) {
       this.killing = true;
-    }
+   }
   }
 
   if (this.killing) {
-    this.prey = null;
-    this.killing = false;
-    this.caughtPrey = false;
-
+    this.killTime++;
+    if (this.killTime % 5 === 0) {
+      this.caughtPrey.size--;
+    }
+    if (this.caughtPrey.size <= 0) {
+      this.killing = false;
+      this.killTime = 0;
+      this.caughtPrey = false;
+    }
   }
+}; */
+
+Contender.prototype.draw = function() {
+  push();
+  translate(this.pos.x, this.pos.y);
+  var heading = this.velocity.heading();
+  rotate(heading + HALF_PI);
+  image(this.sprite, 0, 0, this.size, this.size);
+  pop();
 }

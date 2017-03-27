@@ -1,6 +1,5 @@
-function Rock(rockX, rockY, rockNum, rockImg) {
+function Rock(rockX, rockY, rockImg) {
   this.pos = createVector(rockX, rockY);
-  this.number = rockNum;
   this.sprite = rockImg;
   this.accel = createVector(0, 0);
   this.velocity = createVector(0, 0);
@@ -84,7 +83,7 @@ Rock.prototype.hunt = function(prey) {
 
 Rock.prototype.kill = function(prey) {
   if (this.caughtPrey) {
-    if (p5.Vector.dist(this.pos, this.caughtPrey.pos) <= 1) {
+    if (p5.Vector.dist(this.pos, prey.pos) <= 1) {
       this.killing = true;
     }
   }
