@@ -6,9 +6,9 @@ var scisImg;
 var papImg;
 
 function preload() { //loading up the images
-  rockImg = loadImage("https://stephenround.github.io/MAR440/Roshambo/assets/rockhand.png");
-  scisImg = loadImage("https://stephenround.github.io/MAR440/Roshambo/assets/scishand.png");
-  papImg = loadImage("https://stephenround.github.io/MAR440/Roshambo/assets/paperhand.png")
+  rockImg = loadImage("assets/rockhand.png");
+  scisImg = loadImage("assets/scishand.png");
+  papImg = loadImage("assets/paperhand.png")
 }
 
 
