@@ -12,10 +12,10 @@ However, I have overcome this obstacle, as well as all the ones that popped up a
 The three agents of this program are Rock, Paper, and Scissors. I had been flip-flopping between having a single class and having three separate but identical classes, before settling on finally having one class to contain all the intelligence of each agent.
 
 These were the original icons:
-![rock](project2/assets/rock.png) ![paper](project2/assets/paper.png) ![scissors](project2/assets/scissors.png)
+![rock](assets/rock.png) ![paper](assets/paper.png) ![scissors](assets/scissors.png)
 
 These are the new icons:
-![rock](project2/assets/rockhand.png) ![paper](project2/assets/paperhand.png) ![scissors](project2/assets/scishand.png)
+![rock](assets/rockhand.png) ![paper](assets/paperhand.png) ![scissors](assets/scishand.png)
 
 I color-coded them for clarity. I made the decision to make hand icons instead of the literal representations because the paper icon didn't show up very well with the background. These new icons are easy to see and are more aesthetically pleasing.
 
