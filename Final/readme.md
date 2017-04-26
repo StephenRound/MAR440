@@ -1,6 +1,6 @@
 #### Final Project
 ---
-##### Collaboration with Haley Tatalovich (@HaleyTat)
+##### Collaboration with Haley Tatalovich [@HaleyTat](https://github.com/HaleyTat)
 
 ###### The basis
 This is a volume based projected sculpture that morphs according to the recorded amplitude of the room. It gets prettier when it gets louder.
