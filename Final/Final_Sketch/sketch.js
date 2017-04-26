@@ -20,7 +20,7 @@ function draw() {
   translate(random(width), random(height), random(storeLvl*10));
   rotateX(frameCount);
   rotateZ(frameCount);
-  box(100);
+  box(100); //this little random box gives the user something to glance at besides the rings
   pop();
   // push();
   // pop();
@@ -55,7 +55,7 @@ function drawSpeaker() {
     pop();
     specularMaterial(0, 0, easyLvl*50, 100-easyLvl*3);
     drawSound();
-  } else {
+  } else { //if the highest point reaches over 50, the beat rings turn red
     push();
     specularMaterial(0, 0, easyLvl*50, 80-easyLvl);
     torus((storeLvl) * 30, 30);
@@ -69,7 +69,7 @@ function drawSpeaker() {
  function create() {
   translate(width / width, height / height);
   rotateX(frameCount * 0.001);
-  rotateY(frameCount * 0.01);
+  rotateY(frameCount * 0.01); //rotating the Y axis a little faster so there's good movement.
   rotateZ(frameCount * 0.001);
   push();
   drawSpeaker();
@@ -88,7 +88,7 @@ function drawSpeaker() {
 function drawSound() { //moved this big chunk down here to save space in the draw function
 //   directionalLight(250, 0, 50, (mouseX/width - 0.5) *2, -(mouseY/height-0.5)*2, 0.25);
 //   ambientLight(255, 30, 10);  
-//   ambientMaterial(100);
+//   ambientMaterial(100); //playing with lighting where the mouse is the light source
   translate(0, 0, -easyLvl * 55);
   push();
   torus(easyLvl * 40, 30);
