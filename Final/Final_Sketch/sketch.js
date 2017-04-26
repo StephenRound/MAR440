@@ -13,7 +13,7 @@ function draw() {
   camera(0, 0, 2000);
   easyLvl = floor(level * 100); //this variable converts the raw data into nice round numbers
   writeLevel(); //this function grabs the highest point the amplitude reaches and stores it
-  for(var i = 0; i < easyLvl-10; i++) {
+  for(var i = 0; i < easyLvl + 2; i++) {
     create();
   }
   push();
