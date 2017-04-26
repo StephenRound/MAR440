@@ -1,3 +1,11 @@
+/*
+  Possible Additions List:
+  - Make sculpture move according to an input
+  - Create more tiers of volume (currently 0-30, 31-50, 51+);
+  - 
+
+*/
+
 var mic, level, storeLvl, easyLvl;
 var lvlArr = [];
 
@@ -16,12 +24,7 @@ function draw() {
   for(var i = 0; i < easyLvl + 2; i++) {
     create();
   }
-  push();
-  translate(random(width), random(height), random(storeLvl*10));
-  rotateX(frameCount);
-  rotateZ(frameCount);
-  box(100); //this little random box gives the user something to glance at besides the rings
-  pop();
+  randoBox();
   // push();
   // pop();
   //console.log(floor(level*1000));
@@ -40,6 +43,14 @@ function writeLevel() {
   return storeLvl; //outputs that data
 }
 
+function randoBox() {
+  push();
+  translate(random(width), random(height), random(storeLvl*10));
+  rotateX(frameCount);
+  rotateZ(frameCount);
+  box(100); //this little random box gives the user something to glance at besides the rings
+  pop();
+}
 
 function drawSpeaker() {
   if (storeLvl < 30) { //initial ring, grows up to a certain point, remains the size of the largest amp reading
