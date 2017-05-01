@@ -21,14 +21,18 @@ function draw() {
   camera(0, 0, 2000);
   easyLvl = floor(level * 100); //this variable converts the raw data into nice round numbers
   writeLevel(); //this function grabs the highest point the amplitude reaches and stores it
+  translate((width/width - frameCount), height/height, -frameCount);
   for(var i = 0; i < easyLvl + 2; i++) {
     create();
   }
-  randoBox();
+  //for(var k = 0; k < 25; k++) {
+    randoBox();
+  //}
   // push();
   // pop();
   //console.log(floor(level*1000));
-  console.log(easyLvl);
+  //console.log(easyLvl);
+  console.log(frameCount)
 }
 
 function windowResized() {
