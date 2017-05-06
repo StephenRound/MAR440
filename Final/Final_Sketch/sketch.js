@@ -30,9 +30,9 @@ function draw() {
   //}
   // push();
   // pop();
-  //console.log(floor(level*1000));
+  console.log(floor(level*1000));
   //console.log(easyLvl);
-  console.log(frameCount)
+  //console.log(frameCount)
 }
 
 function windowResized() {
